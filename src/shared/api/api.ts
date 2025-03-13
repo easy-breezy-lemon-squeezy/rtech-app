@@ -38,7 +38,7 @@ interface Comment {
 }
 export const useCommentsByPostId = (postId: number) => {
   return useQuery<Comment[], Error>({
-    queryKey: ["comments"],
+    queryKey: ["comments" + postId],
     queryFn: async () => {
       const response = await axios.get<Comment[]>(
         `${URL}/comments?postId=${postId}`
@@ -47,16 +47,17 @@ export const useCommentsByPostId = (postId: number) => {
     },
   });
 };
+
 interface Post {
   id: number;
   title: string;
   body: string;
 }
 export const usePostById = (postId: number) => {
-  return useQuery<Post, Error>({
-    queryKey: ["posts"],
+  return useQuery<Post[], Error>({
+    queryKey: ["posts" + postId],
     queryFn: async () => {
-      const response = await axios.get<Post>(`${URL}/posts?id=${postId}`);
+      const response = await axios.get<Post[]>(`${URL}/posts?id=${postId}`);
       return response.data;
     },
   });
