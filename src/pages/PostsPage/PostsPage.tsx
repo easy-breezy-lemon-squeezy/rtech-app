@@ -32,12 +32,12 @@ const PostsList: React.FC = () => {
     [isFetchingNextPage, fetchNextPage, hasNextPage]
   );
 
-  if (isLoading) return <div>Загрузка...</div>;
-  if (isError) return <div>Ошибка: {error.message}</div>;
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error: {error.message}</div>;
 
   return (
     <div className="posts-list">
-      <h1>Список постов</h1>
+      <h1>List of posts</h1>
       <ul>
         {data?.pages.map((page, i) => (
           <React.Fragment key={i}>
@@ -59,9 +59,9 @@ const PostsList: React.FC = () => {
         ))}
       </ul>
 
-      {isFetchingNextPage && <div>Загрузка дополнительных данных...</div>}
+      {isFetchingNextPage && <div>Uploading additional data...</div>}
 
-      {!hasNextPage && <div>Больше постов нет</div>}
+      {!hasNextPage && <div>There are no more posts</div>}
     </div>
   );
 };
