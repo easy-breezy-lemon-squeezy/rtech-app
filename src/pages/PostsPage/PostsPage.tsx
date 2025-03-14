@@ -1,4 +1,11 @@
-import React, { useRef, useCallback, FC, Fragment } from "react";
+import React, {
+  useRef,
+  useCallback,
+  FC,
+  Fragment,
+  useEffect,
+  useState,
+} from "react";
 import { Link } from "react-router-dom";
 import { usePosts } from "../../shared/api/api";
 import Loader from "../../shared/ui/Loader";
@@ -24,7 +31,12 @@ const PostsList: FC = () => {
     isError,
     error,
   } = usePosts();
-
+  useEffect(() => {
+    const savedScrollPosition = localStorage.getItem("scrollPosition");
+    if (savedScrollPosition) {
+      window.scrollTo(0, parseInt(savedScrollPosition, 10));
+    }
+  }, []);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   const lastPostRef = useCallback(
@@ -43,7 +55,12 @@ const PostsList: FC = () => {
     },
     [isFetchingNextPage, fetchNextPage, hasNextPage]
   );
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const handlePostClick = () => {
+    setScrollPosition(window.scrollY);
 
+    localStorage.setItem("scrollPosition", window.scrollY.toString());
+  };
   if (isLoading) return <Loader />;
   if (isError)
     return (
@@ -85,7 +102,11 @@ const PostsList: FC = () => {
                         hoverable
                         className="shadow-md hover:shadow-xl transition-shadow duration-300 bg-white border-0"
                       >
-                        <Link to={`/post/${post.id}`} className="block">
+                        <Link
+                          to={`/post/${post.id}`}
+                          className="block"
+                          onClick={handlePostClick}
+                        >
                           <div className="flex items-start">
                             <div className="mr-4">
                               <Avatar
