@@ -1,10 +1,10 @@
 import React, { FC } from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import { userRoutes } from "./user.routes";
 import PostsPage from "../../pages/PostsPage/PostsPage";
 import PostDetailsPage from "../../pages/PostDetailsPage/PostDetailsPage";
 const Navigation: FC = () => {
-  const router = createBrowserRouter([
+  const router = createHashRouter([
     ...userRoutes.map((route) => ({
       path: route.path,
       element: <route.component />,
