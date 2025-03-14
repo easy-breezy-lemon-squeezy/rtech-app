@@ -49,11 +49,11 @@ export const useCommentsByPostId = (postId: number) => {
 };
 
 export const usePostById = (postId: number) => {
-  return useQuery<Post[], Error>({
+  return useQuery<Post, Error>({
     queryKey: ["posts" + postId],
     queryFn: async () => {
       const response = await axios.get<Post[]>(`${URL}/posts?id=${postId}`);
-      return response.data;
+      return response.data[0];
     },
   });
 };

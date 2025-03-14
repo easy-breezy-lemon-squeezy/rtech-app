@@ -1,8 +1,8 @@
-import React, { useRef, useCallback } from "react";
+import React, { useRef, useCallback, FC } from "react";
 import { Link } from "react-router-dom";
 import { usePosts } from "../../shared/api/api";
-
-const PostsList: React.FC = () => {
+import Loader from "../../shared/ui/Loader";
+const PostsList: FC = () => {
   const {
     data,
     fetchNextPage,
@@ -32,7 +32,7 @@ const PostsList: React.FC = () => {
     [isFetchingNextPage, fetchNextPage, hasNextPage]
   );
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loader />;
   if (isError) return <div>Error: {error.message}</div>;
 
   return (
