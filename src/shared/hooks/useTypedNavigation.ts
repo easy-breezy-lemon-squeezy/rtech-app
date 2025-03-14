@@ -15,6 +15,6 @@ export const useTypedNavigation = () => {
       fullPath += `?${queryParams}`;
     }
 
-    navigate("/" + fullPath);
+    navigate("/#/" + fullPath);
   };
 };

@@ -14,7 +14,15 @@ const Navigation: FC = () => {
       element: <PostDetailsPage />,
     },
     {
+      path: "/#/post/:id",
+      element: <PostDetailsPage />,
+    },
+    {
       path: "/",
+      element: <PostsPage />,
+    },
+    {
+      path: "/#/",
       element: <PostsPage />,
     },
   ]);
