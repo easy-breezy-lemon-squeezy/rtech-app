@@ -2,7 +2,7 @@ import React, { useRef, useCallback, FC, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { usePosts } from "../../shared/api/api";
 import Loader from "../../shared/ui/Loader";
-import { Card, Spin, Alert, Typography, Avatar, Badge } from "antd";
+import { Card, Spin, Alert, Typography, Avatar } from "antd";
 import {
   FileTextOutlined,
   LoadingOutlined,
@@ -88,16 +88,11 @@ const PostsList: FC = () => {
                         <Link to={`/post/${post.id}`} className="block">
                           <div className="flex items-start">
                             <div className="mr-4">
-                              <Badge
-                                count={post.id}
-                                className="site-badge-count-4"
-                              >
-                                <Avatar
-                                  icon={<FileTextOutlined />}
-                                  className="bg-gradient-to-r from-blue-500 to-cyan-500"
-                                  size={48}
-                                />
-                              </Badge>
+                              <Avatar
+                                icon={<FileTextOutlined />}
+                                className="bg-gradient-to-r from-blue-500 to-cyan-500"
+                                size={48}
+                              />
                             </div>
                             <div className="flex-1">
                               <Title
