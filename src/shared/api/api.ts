@@ -48,11 +48,6 @@ export const useCommentsByPostId = (postId: number) => {
   });
 };
 
-interface Post {
-  id: number;
-  title: string;
-  body: string;
-}
 export const usePostById = (postId: number) => {
   return useQuery<Post[], Error>({
     queryKey: ["posts" + postId],
