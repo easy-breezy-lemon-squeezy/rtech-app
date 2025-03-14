@@ -1,8 +1,17 @@
 // PostDetail.tsx
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useCommentsByPostId, usePostById } from "../../shared/api/api";
-import { Avatar, Button, Card, Typography, Divider, Spin, List } from "antd";
+import {
+  Avatar,
+  Button,
+  Card,
+  Typography,
+  Divider,
+  Spin,
+  List,
+  Alert,
+} from "antd";
 import {
   UserOutlined,
   MessageOutlined,
@@ -18,7 +27,7 @@ interface Comment {
   body: string;
   postId: number;
 }
-const PostDetailsPage: React.FC = () => {
+const PostDetailsPage: FC = () => {
   const { id } = useParams();
 
   const comments = useCommentsByPostId(Number(id));
@@ -34,9 +43,31 @@ const PostDetailsPage: React.FC = () => {
   };
   const [showComments, setShowComments] = useState(false);
   if (comments.isLoading) return <Loader />;
-  if (comments.isError) return <div>Error: {comments.error.message}</div>;
-  if (!post.data) return <div>The post was not found</div>;
-  if (!comments.data) return <div>No comments</div>;
+  if (comments.isError) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <Alert
+          message="Error"
+          description={comments.error.message}
+          type="error"
+          showIcon
+          className="max-w-3xl mx-auto"
+        />
+      </div>
+    );
+  }
+  if (!post.data)
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <Alert message="The post was not found" type="info" />
+      </div>
+    );
+  if (!comments.data)
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <Alert message="No comments" type="info" />
+      </div>
+    );
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -51,10 +82,7 @@ const PostDetailsPage: React.FC = () => {
           Back to Posts
         </Button>
 
-        <Card
-          className="shadow-lg rounded-lg overflow-hidden border-0"
-          bordered={false}
-        >
+        <Card className="shadow-lg rounded-lg overflow-hidden border-0">
           <Title
             level={1}
             className="text-center mb-6 text-3xl font-bold text-gray-800 capitalize"
