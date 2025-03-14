@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/rtech-app/static/css/main.cde030cc.css",
-    "main.js": "/rtech-app/static/js/main.7e5caea3.js",
+    "main.js": "/rtech-app/static/js/main.7b927c90.js",
     "static/js/453.43a14186.chunk.js": "/rtech-app/static/js/453.43a14186.chunk.js",
     "index.html": "/rtech-app/index.html",
     "main.cde030cc.css.map": "/rtech-app/static/css/main.cde030cc.css.map",
-    "main.7e5caea3.js.map": "/rtech-app/static/js/main.7e5caea3.js.map",
+    "main.7b927c90.js.map": "/rtech-app/static/js/main.7b927c90.js.map",
     "453.43a14186.chunk.js.map": "/rtech-app/static/js/453.43a14186.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.cde030cc.css",
-    "static/js/main.7e5caea3.js"
+    "static/js/main.7b927c90.js"
   ]
 }
